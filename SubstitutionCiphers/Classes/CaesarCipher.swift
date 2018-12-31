@@ -9,8 +9,8 @@ import UIKit
 
 
 public class CaesarCipher{
-    private var alphabetEnum: SCAlphabet
-    private var alphabet: [Character]
+    private let alphabetEnum: SCAlphabet
+    private let alphabet: [Character]
     
     public  init(_ alphabet: SCAlphabet = SCAlphabet.forcedUppercased) {
         self.alphabetEnum = alphabet
