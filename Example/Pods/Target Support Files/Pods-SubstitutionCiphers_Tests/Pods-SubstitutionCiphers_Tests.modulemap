@@ -1,0 +1,6 @@
+framework module Pods_SubstitutionCiphers_Tests {
+  umbrella header "Pods-SubstitutionCiphers_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,16 @@
+PODS:
+  - SubstitutionCiphers (0.1.0)
+
+DEPENDENCIES:
+  - SubstitutionCiphers (from `../`)
+
+EXTERNAL SOURCES:
+  SubstitutionCiphers:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SubstitutionCiphers: 2cabef0bff719732d1988d56f6f719b747d5e4a4
+
+PODFILE CHECKSUM: d7f39934529f1602a72b297970dd1f9ece00e19f
+
+COCOAPODS: 1.5.0
