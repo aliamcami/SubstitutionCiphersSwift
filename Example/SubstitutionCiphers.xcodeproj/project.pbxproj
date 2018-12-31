@@ -43,10 +43,10 @@
 		8DF976B650E2213FF36B008A /* Pods_SubstitutionCiphers_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SubstitutionCiphers_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9421001326CAE4318207D080 /* Pods_SubstitutionCiphers_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SubstitutionCiphers_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF0455B4E259047E7E56BADC /* Pods-SubstitutionCiphers_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SubstitutionCiphers_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SubstitutionCiphers_Example/Pods-SubstitutionCiphers_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		B46C7C508B6F8A9346BF0304 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		B46C7C508B6F8A9346BF0304 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		D7F722BE3DAC264B414C6703 /* Pods-SubstitutionCiphers_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SubstitutionCiphers_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SubstitutionCiphers_Tests/Pods-SubstitutionCiphers_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		D90F10DF10525E5287A65738 /* SubstitutionCiphers.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = SubstitutionCiphers.podspec; path = ../SubstitutionCiphers.podspec; sourceTree = "<group>"; };
-		E88CE15D3383F4452461299A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		D90F10DF10525E5287A65738 /* SubstitutionCiphers.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SubstitutionCiphers.podspec; path = ../SubstitutionCiphers.podspec; sourceTree = "<group>"; };
+		E88CE15D3383F4452461299A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
