@@ -14,11 +14,11 @@ class PerformanceTests: XCTestCase {
     //Should be about 0.3 sec for 500k characters and 1 sec for 2.2kk
     func testCaesarPerformanceBigText(){
         let b = giantText
-        let caesar = CaesarCipher()
         let shift = randomShift
+        let caesar = CaesarCipher(shift: shift)
         
         self.measure {
-            _ = caesar.encipher(b, shiftBy: shift)
+            _ = caesar.encipher(b)
         }
     }
     
@@ -35,12 +35,11 @@ class PerformanceTests: XCTestCase {
     //Should be about 0.001 sec for 1k characters
     func testCaesarPerformanceSmallText(){
         let b = text
-        
-        let caesar = CaesarCipher()
         let shift = randomShift
+        let caesar = CaesarCipher(shift: shift)
         
         self.measure {
-            _ = caesar.encipher(b, shiftBy: shift)
+            _ = caesar.encipher(b)
         }
     }
     

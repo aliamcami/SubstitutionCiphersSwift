@@ -4,65 +4,70 @@ import XCTest
 class Tests: XCTestCase {
     
     func testEncipherDecipher_positive_customAlphabet(){
-        let caesar = CaesarCipher(alphabet)
         
         //shift is less than text count
-        self.caesarEncipherDecipher(by: text.count/2, caesar: caesar)
+        let shift1 = text.count/2
+        self.caesarEncipherDecipher(caesar: CaesarCipher(shift: shift1, alphabet: alphabet))
         
         //shift is greater than text count
-        self.caesarEncipherDecipher(by: text.count/2 + text.count, caesar: caesar)
+        let shift2 = text.count/2 + text.count
+        self.caesarEncipherDecipher(caesar: CaesarCipher(shift: shift2, alphabet: alphabet))
         
         //shift is exacly text count
-        self.caesarEncipherDecipher(by: text.count, caesar: caesar)
+        let shift3 = text.count
+        self.caesarEncipherDecipher(caesar: CaesarCipher(shift: shift3, alphabet: alphabet))
     }
     
     func testEncipherDecipher_negative_customAlphabet(){
-        let caesar = CaesarCipher(alphabet)
-        
         //shift is less than text count
-        self.caesarEncipherDecipher(by: -text.count/2, caesar: caesar)
+        let shift1 = -text.count/2
+        self.caesarEncipherDecipher(caesar: CaesarCipher(shift: shift1, alphabet: alphabet))
         
         //shift is greater than text count
-        self.caesarEncipherDecipher(by: -(text.count/2 + text.count), caesar: caesar)
+        let shift2 = -(text.count/2 + text.count)
+        self.caesarEncipherDecipher(caesar: CaesarCipher(shift: shift2, alphabet: alphabet))
         
         //shift if exacly text count
-        self.caesarEncipherDecipher(by: -text.count, caesar: caesar)
+        let shift3 = -text.count
+        self.caesarEncipherDecipher(caesar: CaesarCipher(shift: shift3, alphabet: alphabet))
     }
     
     func testEncipherDecipherCaesarZero(){
-        let caesar = CaesarCipher(alphabet)
-        let cipher = caesar.encipher(text, shiftBy: 0)
+        let caesar = CaesarCipher(shift: 0, alphabet: alphabet)
+        let cipher = caesar.encipher(text)
         XCTAssertEqual(cipher, text)
-        let decipher = caesar.decipher(cipher, shiftBy: 0)
+        let decipher = caesar.decipher(cipher)
         XCTAssertEqual(decipher, text)
     }
     
     func testCaesarForcedLowercase(){
-        let caesar = CaesarCipher(.forcedLowercased)
         let shift = randomShift
-        let cipher = caesar.encipher(text, shiftBy: shift)
+        let caesar = CaesarCipher(shift: shift, alphabet: alphabet, mode: .forceLowercase)
+        let cipher = caesar.encipher(text)
         XCTAssertEqual(cipher, cipher.lowercased())
         XCTAssertNotEqual(cipher, text)
-        let decipher = caesar.decipher(cipher, shiftBy: shift)
+        let decipher = caesar.decipher(cipher)
         XCTAssertEqual(text.lowercased(), decipher)
     }
     
     func testCaesarForcedUpercase(){
-        let caesar = CaesarCipher(.forcedUppercased)
         let shift = randomShift
-        let cipher = caesar.encipher(text, shiftBy: shift)
+        let caesar = CaesarCipher(shift: shift, alphabet: alphabet, mode: .forceUppercase)
+        let cipher = caesar.encipher(text)
         XCTAssertEqual(cipher, cipher.uppercased())
         XCTAssertNotEqual(cipher, text)
-        let decipher = caesar.decipher(cipher, shiftBy: shift)
+        let decipher = caesar.decipher(cipher)
         XCTAssertEqual(text.uppercased(), decipher)
     }
+    
+    
 
     
     //MARK: Helpers
-    func caesarEncipherDecipher(by shift: Int, caesar: CaesarCipher){
-        let cipher = caesar.encipher(text, shiftBy: shift)
+    func caesarEncipherDecipher(caesar: CaesarCipher){
+        let cipher = caesar.encipher(text)
         XCTAssertNotEqual(cipher, text)
-        let decipher = caesar.decipher(cipher, shiftBy: shift)
+        let decipher = caesar.decipher(cipher)
         XCTAssertEqual(decipher, text)
     }
     

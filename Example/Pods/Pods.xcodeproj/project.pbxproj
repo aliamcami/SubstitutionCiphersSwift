@@ -18,6 +18,7 @@
 		3A6D7154623D72F5BC59E0F93D45E129 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		574169CF49F37B287B4A648E259B2524 /* Pods-SubstitutionCiphers_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DEC0786F653CE208FCBB70CC4C0145A6 /* Pods-SubstitutionCiphers_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		777262687C6C21A2954365914DC78AC4 /* Pods-SubstitutionCiphers_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D63800FCEEB41BCAD95567E1DFD400CE /* Pods-SubstitutionCiphers_Example-dummy.m */; };
+		86A6163621DB0A9500BB0DCA /* CipherMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A6163521DB0A9500BB0DCA /* CipherMode.swift */; };
 		C1C51EE1B117AB72F017931CC37DCAC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		CB135AFE939D29C8491FA03FD36CEF64 /* Pods-SubstitutionCiphers_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 63BF98D0F830DD9488E0045E446AC729 /* Pods-SubstitutionCiphers_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -59,6 +60,7 @@
 		815DFF64886A0814C3C3257C7FB72F8B /* Pods_SubstitutionCiphers_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SubstitutionCiphers_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		836D478D679E3BA6F072412901416074 /* SubstitutionCiphers-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SubstitutionCiphers-prefix.pch"; sourceTree = "<group>"; };
 		83B5F4B04A9F3F2203F927F675FE0477 /* Pods-SubstitutionCiphers_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SubstitutionCiphers_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		86A6163521DB0A9500BB0DCA /* CipherMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CipherMode.swift; sourceTree = "<group>"; };
 		86E986BAA2AF6E1699857E738194A70A /* Pods-SubstitutionCiphers_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SubstitutionCiphers_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		88256282EB15647CEDC8A925E5C10E4B /* Pods-SubstitutionCiphers_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SubstitutionCiphers_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		8AA85A04F3119E9B639D4B0C73DC0A5C /* Pods-SubstitutionCiphers_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SubstitutionCiphers_Tests-dummy.m"; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				EF03C18D354EC5A5D68832274AA39580 /* CaesarCipher.swift */,
+				86A6163521DB0A9500BB0DCA /* CipherMode.swift */,
 				DF7764A62EFFD5D2EEE6366F73BDCFBA /* Extensions.swift */,
 				6EEC65C726326DE8CD108C135D835A8F /* SCAlphabet.swift */,
 				0A017E4099499239EE44E2DE1740BFBE /* VigenereCipher.swift */,
@@ -360,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86A6163621DB0A9500BB0DCA /* CipherMode.swift in Sources */,
 				3859680474BDA28CCD2200DEA21956AA /* CaesarCipher.swift in Sources */,
 				1769B9649C6D19D28BEC3E0CEBCE53D6 /* Extensions.swift in Sources */,
 				0E046C12375E4FF5F366FB0DFE5B4FDC /* SCAlphabet.swift in Sources */,

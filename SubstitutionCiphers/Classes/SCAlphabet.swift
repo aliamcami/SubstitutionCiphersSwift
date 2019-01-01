@@ -8,16 +8,12 @@
 import UIKit
 
 public enum SCAlphabet{
-    ///Transforms all the text into uppercased characters, then apply the cipher
-    case forcedUppercased
     ///All ascii printable characters
     case printables
     ///Apply cipher only to uppercased characters
     case uppercased
     ///Apply cipher only to lowercased characters
     case lowercased
-    ///Transforms all text into lowercase and then apply the cipher
-    case forcedLowercased
     ///Custom alphabet passed on as string, only unique characters are considered.
     ///   - It will only consider the first occurrence of each character
     case custom(String)
@@ -38,11 +34,11 @@ public enum SCAlphabet{
             return getAllUnicodeFrom(first: 32, last: 126)
         case .custom(let alph):
             return Array(alph).unique()
-        case .forcedUppercased, .uppercased:
+        case .uppercased:
             let firstLetter = Int(UnicodeScalar("A").value)
             let lastLetter = Int(UnicodeScalar("Z").value)
             return getAllUnicodeFrom(first: firstLetter, last: lastLetter)
-        case .lowercased, .forcedLowercased:
+        case .lowercased:
             let firstLetter = Int(UnicodeScalar("a").value)
             let lastLetter = Int(UnicodeScalar("z").value)
             return getAllUnicodeFrom(first: firstLetter, last: lastLetter)
