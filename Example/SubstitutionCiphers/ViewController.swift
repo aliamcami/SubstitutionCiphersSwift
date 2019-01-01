@@ -10,15 +10,10 @@ import UIKit
 import SubstitutionCiphers
 
 class ViewController: UIViewController {
-
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("b1")
-        let vigenere = VigenereCipher(key: "guh")
-        print("b2")
-//        let cipher = vigenere.encipher("plainTextFUCKING")
-//        let decipher = vigenere.decipher(cipher)
-//        print(" CIPHER: \(cipher)\nDECIPHER: \(decipher)")
+       
     }
 
     override func didReceiveMemoryWarning() {

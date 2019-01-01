@@ -45,6 +45,7 @@ public class VigenereCipher {
         default:
             break
         }
+        
         let cipher = text.enumerated().map{(index, letter) in
             return encipherLetter(letter, index: index)
         }
@@ -62,9 +63,10 @@ public class VigenereCipher {
     
     private func makeCache(){
         for char in key.unique(){
-            let shift = alphabet.firstIndex(of: char) ?? 0
-            cacheEnchiper[char] = makeAlphabet(shiftedBy: shift)
-            cacheDechiper[char] = makeAlphabet(shiftedBy: -shift)
+            if let shift = alphabet.firstIndex(of: char){
+                cacheEnchiper[char] = makeAlphabet(shiftedBy: shift)
+                cacheDechiper[char] = makeAlphabet(shiftedBy: -shift)
+            }
         }
     }
     
@@ -73,7 +75,7 @@ public class VigenereCipher {
         _ = alphabet.enumerated().map{ (index, char) in
             let newIndex = alphabet.index(index, shiftedBy: shift)
             tmp[char] = alphabet[newIndex]
-        }
+        }        
         return tmp
     }
     

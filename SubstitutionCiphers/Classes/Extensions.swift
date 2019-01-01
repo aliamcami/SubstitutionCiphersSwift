@@ -19,6 +19,16 @@ extension Array where Element: Comparable{
     }
 }
 
+extension UnsafeBufferPointer{
+    func index(_ i: Int, shiftedBy shift: Int) -> Int{
+        let positions = i + shift
+        var new = positions < 0 ? (count - abs(positions) % count) : positions % count
+        if new == count { new = 0 }
+        
+        return new
+    }
+}
+
 //Based on: https://stackoverflow.com/questions/27624331/unique-values-of-array-in-swift
 extension Sequence where Iterator.Element: Hashable {
     ///Return a sequence with unique characters

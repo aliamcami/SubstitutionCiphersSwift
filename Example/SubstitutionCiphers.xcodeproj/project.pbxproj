@@ -13,7 +13,10 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		607FACEC1AFB9204008FA782 /* CaesarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* CaesarTests.swift */; };
+		86A6163021DB00C000BB0DCA /* VigenereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A6162F21DB00C000BB0DCA /* VigenereTests.swift */; };
+		86A6163221DB00CF00BB0DCA /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A6163121DB00CF00BB0DCA /* PerformanceTests.swift */; };
+		86A6163421DB00E100BB0DCA /* CommonHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A6163321DB00E100BB0DCA /* CommonHelpers.swift */; };
 		FC5FCD459661D7FC9069371E /* Pods_SubstitutionCiphers_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9421001326CAE4318207D080 /* Pods_SubstitutionCiphers_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,8 +41,11 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* SubstitutionCiphers_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SubstitutionCiphers_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		607FACEB1AFB9204008FA782 /* CaesarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaesarTests.swift; sourceTree = "<group>"; };
 		8609080090D31105FFF8BBA2 /* Pods-SubstitutionCiphers_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SubstitutionCiphers_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SubstitutionCiphers_Tests/Pods-SubstitutionCiphers_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		86A6162F21DB00C000BB0DCA /* VigenereTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VigenereTests.swift; sourceTree = "<group>"; };
+		86A6163121DB00CF00BB0DCA /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
+		86A6163321DB00E100BB0DCA /* CommonHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonHelpers.swift; sourceTree = "<group>"; };
 		8DF976B650E2213FF36B008A /* Pods_SubstitutionCiphers_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SubstitutionCiphers_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9421001326CAE4318207D080 /* Pods_SubstitutionCiphers_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SubstitutionCiphers_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF0455B4E259047E7E56BADC /* Pods-SubstitutionCiphers_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SubstitutionCiphers_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SubstitutionCiphers_Example/Pods-SubstitutionCiphers_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,7 +121,10 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				607FACEB1AFB9204008FA782 /* CaesarTests.swift */,
+				86A6162F21DB00C000BB0DCA /* VigenereTests.swift */,
+				86A6163121DB00CF00BB0DCA /* PerformanceTests.swift */,
+				86A6163321DB00E100BB0DCA /* CommonHelpers.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -331,7 +340,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				86A6163021DB00C000BB0DCA /* VigenereTests.swift in Sources */,
+				607FACEC1AFB9204008FA782 /* CaesarTests.swift in Sources */,
+				86A6163421DB00E100BB0DCA /* CommonHelpers.swift in Sources */,
+				86A6163221DB00CF00BB0DCA /* PerformanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
