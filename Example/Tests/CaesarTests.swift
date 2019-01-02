@@ -33,7 +33,7 @@ class Tests: XCTestCase {
     }
     
     func testEncipherDecipherCaesarZero(){
-        let caesar = CaesarCipher(shift: 0, alphabet: alphabet)
+        let caesar = CaesarCipher(shift: 0, alphabet: alphabet, mode: .caseSensitive)
         let cipher = caesar.encipher(text)
         XCTAssertEqual(cipher, text)
         let decipher = caesar.decipher(cipher)
@@ -68,7 +68,7 @@ class Tests: XCTestCase {
         let cipher = caesar.encipher(text)
         XCTAssertNotEqual(cipher, text)
         let decipher = caesar.decipher(cipher)
-        XCTAssertEqual(decipher, text)
+        XCTAssertEqual(decipher.uppercased(), text.uppercased())
     }
     
 }
