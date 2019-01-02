@@ -10,13 +10,13 @@ import UIKit
 
 public class CaesarCipher{
     private let alphabetEnum: SCAlphabet
-    let alphabet: [Character]
+    private let alphabet: [Character]
     private let mode: CipherMode
     private let shift: Int
-    private var cacheDecipher = Dictionary<Character, Character>()
-    private var cacheEncipher = Dictionary<Character, Character>()
+    internal var cacheDecipher = Dictionary<Character, Character>()
+    internal var cacheEncipher = Dictionary<Character, Character>()
     
-    public init(shift: Int, alphabet: SCAlphabet = SCAlphabet.uppercased, mode: CipherMode = .caseSensitive) {
+    public init(shift: Int, alphabet: SCAlphabet = SCAlphabet.uppercased, mode: CipherMode = .forceUppercase) {
         self.alphabetEnum = alphabet
         self.alphabet = self.alphabetEnum.array
         self.shift = shift
@@ -26,7 +26,7 @@ public class CaesarCipher{
         self.cacheDecipher = makeCache(shiftedBy: -self.shift)
     }
     
-    public convenience init(shift: Int, alphabet: String, mode: CipherMode = .caseSensitive) {
+    public convenience init(shift: Int, alphabet: String, mode: CipherMode = .forceUppercase) {
         self.init(shift: shift, alphabet: SCAlphabet.custom(alphabet), mode: mode)
     }
     
@@ -34,8 +34,7 @@ public class CaesarCipher{
     private func makeCache(shiftedBy shift: Int) -> Dictionary<Character, Character>{
         var tmpCache = Dictionary<Character, Character>()
         
-        func makeCacheFor(_ strAlphabet: String){
-            let alphabet = Array(strAlphabet)
+        func makeCacheFor(_ alphabet: [Character]){
             for (index, char) in alphabet.enumerated(){
                 let newIndex = alphabet.index(index, shiftedBy: shift)
                 let newChar = alphabet[newIndex]
@@ -47,14 +46,16 @@ public class CaesarCipher{
         
         switch mode {
         case .caseInsensitive:
-            makeCacheFor(alph.lowercased())
-            makeCacheFor(alph.uppercased())
+            let lower = alph.lowercased().unique()
+            let upper = String(lower).uppercased().filter { !lower.contains($0)}
+            let newAlph : [Character] = "\(String(lower))\(upper)".unique()
+            makeCacheFor(newAlph)
         case .forceLowercase:
-            makeCacheFor(alph.lowercased())
+            makeCacheFor(alph.lowercased().unique())
         case .forceUppercase:
-            makeCacheFor(alph.uppercased())
+            makeCacheFor(alph.uppercased().unique())
         default:
-            makeCacheFor(alph)
+            makeCacheFor(alphabet)
         }
         
         return tmpCache
