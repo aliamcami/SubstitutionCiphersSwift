@@ -12,35 +12,39 @@ public class VigenereCipher {
     private let key: [Character]
     private let alphabetEnum: SCAlphabet
     private let alphabet: [Character]
-    private var cacheEnchiper = Dictionary<Character, Dictionary<Character, Character>>()
-    private var cacheDechiper = Dictionary<Character, Dictionary<Character, Character>>()
+    private typealias cacheType = Dictionary<Character, Dictionary<Character, Character>>
+    private var cacheEnchiper = cacheType()
+    private var cacheDechiper = cacheType()
     
     public  init(_ alphabet: SCAlphabet = SCAlphabet.uppercased, key: String, mode: CipherMode = .forceUppercase) {
         self.alphabetEnum = alphabet
         self.alphabet = self.alphabetEnum.array
-        self.key = Array(key)
         self.mode = mode
+        
+        switch mode {
+        case .forceLowercase:
+            self.key = Array(key.lowercased())
+        case .forceUppercase:
+            self.key = Array(key.uppercased())
+        default:
+            self.key = Array(key)
+        }
         
         makeCache()
     }
     
     public convenience init(_ alphabet: String, key: String, mode: CipherMode = .forceUppercase) {
-        self.init(SCAlphabet.custom(alphabet), key: key)
+        self.init(SCAlphabet.custom(alphabet), key: key, mode: mode)
     }
     
     public func encipher(_ text: String) -> String{
-
-        let cipher = text.enumerated().map{(index, letter) in
-            return encipherLetter(letter, index: index)
-        }
+        let cipher = apply(cacheEnchiper, toText: text)
         
         return String(cipher)
     }
     
     public func decipher(_ cipher: String) -> String{
-        let cipher = cipher.enumerated().map{(index, letter) in
-            return decipherLetter(letter, index: index)
-        }
+        let cipher = apply(cacheDechiper, toText: cipher)
         
         return String(cipher)
     }
@@ -48,32 +52,37 @@ public class VigenereCipher {
     private func makeCache(){
         for char in key.unique(){
             if let shift = alphabet.firstIndex(of: char){
-                cacheEnchiper[char] = makeAlphabet(shiftedBy: shift)
-                cacheDechiper[char] = makeAlphabet(shiftedBy: -shift)
+                let caesar = CaesarCipher(shift: shift, alphabet: self.alphabetEnum, mode: self.mode)
+                cacheEnchiper[char] = caesar.cacheEncipher
+                cacheDechiper[char] = caesar.cacheDecipher
             }
         }
     }
     
-    private func makeAlphabet(shiftedBy shift: Int) -> Dictionary<Character, Character>{
-        var tmp = Dictionary<Character, Character>()
-        _ = alphabet.enumerated().map{ (index, char) in
-            let newIndex = alphabet.index(index, shiftedBy: shift)
-            tmp[char] = alphabet[newIndex]
+    private func apply(_ cache: cacheType, toText text: String) -> [Character]{
+        guard !self.key.isEmpty else{
+            return Array(text)
         }
-        return tmp
-    }
-    
-    ///Cipher one letter from this letter position in the text
-    ///     - Parameter index: should be this letter index on the original text
-    private func encipherLetter(_ letter: Character, index: Int) -> Character{
-        return substitute(char: letter, index: index, cache: cacheEnchiper)
-    }
-    
-    private func decipherLetter(_ letter: Character, index: Int) -> Character{
-        return substitute(char: letter, index: index, cache: cacheDechiper)
+        
+        var text = text
+        switch mode {
+        case .forceLowercase:
+            text = text.lowercased()
+        case .forceUppercase:
+            text = text.uppercased()
+        default:
+            break
+        }
+        
+        let cipher = text.enumerated().map{(index, letter) in
+            return substitute(char: letter, index: index, cache: cache)
+        }
+        
+        return cipher
     }
     
     private func substitute(char: Character, index: Int, cache: Dictionary<Character, Dictionary<Character, Character>>) -> Character{
+        
         
         let letterKey = key[index % key.count]
         return cache[letterKey]?[char] ?? char
