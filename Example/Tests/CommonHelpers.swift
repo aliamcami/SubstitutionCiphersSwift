@@ -24,6 +24,6 @@ var randomShift : Int{
     return Int.random(in: 0...alphabet.count)
 }
 
-let text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. 9087654321 )(*&ˆ%$#@!<>?:|}{"
+let text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean cursus diam dolor, vitae tempor lacus pellentesque vel. Phasellus in luctus sapien. Aliquam sed libero risus. Nam vitae mattis sem. Curabitur quis urna ut justo porta fringilla efficitur quis metus. Nam rhoncus tortor pharetra nulla pharetra, at tempus quam varius. Aliquam rhoncus, lorem quis egestas varius, lorem felis molestie nisi, vel posuere enim neque non dui. Maecenas ultrices in urna eget egestas. Cras ultrices nisl sed mauris convallis, eget facilisis leo blandit. Cras et quam purus. Donec sed mauris malesuada, rutrum tellus vitae, venenatis orci 9087654321 )(*&ˆ%$#@!<>?:|}{"
 
 let key = "SomeKeyTestCipher)(*&ˆ\\\'9876543ebo974x53twquvyqziuy#!@$Q#IKETSDZDFYJK$Î"
