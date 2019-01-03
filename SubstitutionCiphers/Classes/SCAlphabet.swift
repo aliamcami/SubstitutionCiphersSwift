@@ -6,9 +6,15 @@
 //
 
 import UIKit
-
+/**
+ Enum representing pre-made alphabets
+ - Printables: ascii character from 32 to 126
+ - Uppercased: letters A to Z
+ - Lowercased: letters a to z
+ - Custom: transforms any string to the alphabet, considering only the first occurence of each character
+ */
 public enum SCAlphabet{
-    ///All ascii printable characters
+    ///All ascii printable characters (ascii codes 32 to 126)
     case printables
     ///Apply cipher only to uppercased characters
     case uppercased
@@ -18,6 +24,7 @@ public enum SCAlphabet{
     ///   - It will only consider the first occurrence of each character
     case custom(String)
     
+    ///Array of characters representing the alphabet
     var array: [Character]{
         func getAllUnicodeFrom(first: Int, last: Int) -> [Character]{
             var arr = [Character]()

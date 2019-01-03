@@ -8,6 +8,7 @@
 import UIKit
 
 public class VigenereCipher {
+    //MARK: Variables
     private let mode: CipherMode
     private let key: [Character]
     private let alphabetEnum: SCAlphabet
@@ -16,6 +17,23 @@ public class VigenereCipher {
     private var cacheEnchiper = cacheType()
     private var cacheDechiper = cacheType()
     
+    //MARK:- Public functions
+    
+    /**
+     Initialization with pre-made SCAlphabet, if none is given the default will be A to Z uppercased. If no cipher mode is given the default will be foceUpercase. If a character in the text to be ciphered does not exist in the given alphabet it will remain the same character.
+     
+     - Parameter alphabet: alphabet that will be used to cipher, only the first occurence of each letter or symbol will be valid. The default alphabet is A-Z uppercased:
+        - Upercased is letters A to Z
+        - Lowercased is letters a to z
+        - Printables are all ascii characters from 32 to 126
+        - Custom is any custom string
+     - Parameter key: given string key to encipher text
+     - Parameter mode: The mode in witch the cipher will behave:
+        - Force Upercase will apply uppercase to all given text and given alphabet
+        - Force Lowercase will apply lowercase to all given text and given alphabet
+        - Case Sensitive does not consider uppercase characters equal lowercase characters
+        - Case Insenstivie considers uppercase and lowercase letter to be the same
+     */
     public  init(_ alphabet: SCAlphabet = SCAlphabet.uppercased, key: String, mode: CipherMode = .forceUppercase) {
         self.alphabetEnum = alphabet
         self.alphabet = self.alphabetEnum.array
@@ -33,22 +51,47 @@ public class VigenereCipher {
         makeCache()
     }
     
+    /**
+     Convenience init that accepts an string as alphabet, if none is given the default will be A to Z uppercased. If no cipher mode is given the default will be foceUpercase. If a character in the text to be ciphered does not exist in the given alphabet it will remain the same character.
+     
+     - Parameter alphabet: alphabet that will be used to cipher, only the first occurence of each letter or symbol will be valid. The default alphabet is A-Z uppercased:
+        - Upercased is letters A to Z
+        - Lowercased is letters a to z
+        - Printables are all ascii characters from 32 to 126
+        - Custom is any custom string
+     - Parameter key: given string key to encipher text
+     - Parameter mode: The mode in witch the cipher will behave:
+        - Force Upercase will apply uppercase to all given text and given alphabet
+        - Force Lowercase will apply lowercase to all given text and given alphabet
+        - Case Sensitive does not consider uppercase characters equal lowercase characters
+        - Case Insenstivie considers uppercase and lowercase letter to be the same
+     */
     public convenience init(_ alphabet: String, key: String, mode: CipherMode = .forceUppercase) {
         self.init(SCAlphabet.custom(alphabet), key: key, mode: mode)
     }
     
+    ///Enciphers a given text using the setup given in the inicialization
     public func encipher(_ text: String) -> String{
         let cipher = apply(cacheEnchiper, toText: text)
         
         return String(cipher)
     }
     
+    ///Deciphers a given text using the setup given in the inicialization
     public func decipher(_ cipher: String) -> String{
         let cipher = apply(cacheDechiper, toText: cipher)
         
         return String(cipher)
     }
     
+    //MARK:- Private/Helper functions
+    /***
+    Much like the Caesar cache, it makes the Dictionary representing the new equivalent character for the substitution, but for all possible shifts given the key.
+    It means that it is a dictionary of dictionaries, [KeyChar: [originalChar: ShiftedChar]], for both encryption and decryption.
+     - KeyChar: contains a single character from the given key
+     - OriginalChar: containts a single character from the original alphabet
+     - ShiftedChar: contains a single character from the shifted alphabet given the position that the KeyChar is in the original alphabet
+     */
     private func makeCache(){
         for char in key.unique(){
             if let shift = alphabet.firstIndex(of: char){
@@ -59,6 +102,7 @@ public class VigenereCipher {
         }
     }
     
+    ///Applys the substitution of the text characters given a cache
     private func apply(_ cache: cacheType, toText text: String) -> [Character]{
         guard !self.key.isEmpty else{
             return Array(text)
@@ -81,6 +125,7 @@ public class VigenereCipher {
         return cipher
     }
     
+    ///Calculates the substitute character given that char's position in the original text and the cache to be used.
     private func substitute(char: Character, index: Int, cache: Dictionary<Character, Dictionary<Character, Character>>) -> Character{
         
         
