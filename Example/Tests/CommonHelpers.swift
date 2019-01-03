@@ -10,7 +10,7 @@ import UIKit
 
 let giantText: String = {
     var base = "abcdefghijklmnopqrstuvw%$#@xyzABCDEFGHI JKLMNOPQRSTUVWXYZ0123456789 "
-    for i in 0...14{
+    for i in 0...11{
         base.append(base)
     }
     
