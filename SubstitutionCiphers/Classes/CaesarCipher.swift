@@ -10,11 +10,13 @@ import UIKit
 public class CaesarCipher{
     //MARK: Variables
     private let alphabetEnum: SCAlphabet
-    private let alphabet: [Character]
+    internal let alphabet: [Character]
     private let mode: CipherMode
     private let shift: Int
-    internal var cacheDecipher = Dictionary<Character, Character>()
-    internal var cacheEncipher = Dictionary<Character, Character>()
+    
+    internal lazy var cacheDecipher: Dictionary<Character, Character> = makeCache(shiftedBy: -self.shift)
+    
+    internal lazy var cacheEncipher: Dictionary<Character, Character> = makeCache(shiftedBy: self.shift)
     
     //MARK:- Public functions
     
@@ -35,12 +37,9 @@ public class CaesarCipher{
     */
     public init(shift: Int, alphabet: SCAlphabet = SCAlphabet.uppercased, mode: CipherMode = .forceUppercase) {
         self.alphabetEnum = alphabet
-        self.alphabet = self.alphabetEnum.array
         self.shift = shift
         self.mode = mode
-        
-        self.cacheEncipher = makeCache(shiftedBy: self.shift)
-        self.cacheDecipher = makeCache(shiftedBy: -self.shift)
+        self.alphabet = alphabet.array(fromMode: mode)
     }
     
     /**
@@ -76,31 +75,11 @@ public class CaesarCipher{
     
     ///Makes the Dictionary representing the new equivalent character for the substitution [originalChar: ShiftedChar], for both encryption and decryption.
     private func makeCache(shiftedBy shift: Int) -> Dictionary<Character, Character>{
-        var tmpCache = Dictionary<Character, Character>()
-        
-        ///Produces and stores a shifted alphabet given the alphabet, wich can be different depending on the Cipher Mode
-        func makeCacheFor(_ alphabet: [Character]){
-            for (index, char) in alphabet.enumerated(){
-                let newIndex = alphabet.index(index, shiftedBy: shift)
-                let newChar = alphabet[newIndex]
-                tmpCache[char] = newChar
-            }
-        }
-        
-        let alph = String(alphabet)
-        
-        switch mode {
-        case .caseInsensitive:
-            let lower = alph.lowercased().unique()
-            let upper = String(lower).uppercased().filter { !lower.contains($0)}
-            let newAlph : [Character] = "\(String(lower))\(upper)".unique()
-            makeCacheFor(newAlph)
-        case .forceLowercase:
-            makeCacheFor(alph.lowercased().unique())
-        case .forceUppercase:
-            makeCacheFor(alph.uppercased().unique())
-        default:
-            makeCacheFor(alphabet)
+        var tmpCache = Dictionary<Character, Character>()        
+        for (index, char) in alphabet.enumerated(){
+            let newIndex = alphabet.index(index, shiftedBy: shift)
+            let newChar = alphabet[newIndex]
+            tmpCache[char] = newChar
         }
         
         return tmpCache

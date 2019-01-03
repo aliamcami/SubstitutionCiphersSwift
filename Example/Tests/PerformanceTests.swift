@@ -11,50 +11,43 @@ import SubstitutionCiphers
 
 class PerformanceTests: XCTestCase {
 
-    //0.001
     func testCaesarPerformanceBigText(){
-        let b = giantText
-        let shift = randomShift
-        let caesar = CaesarCipher(shift: shift)
-        
+        let b = giantText //278528 chars
+
         self.measure {
             for _ in 0...10{
+                let caesar = CaesarCipher(shift: randomShift)
                 _ = caesar.encipher(b)
             }
         }
     }
     
-    //2.538
+    func testCaesarPerformanceSmallText(){
+        let b = text
+        self.measure {
+            for _ in 0...10{
+                let caesar = CaesarCipher(shift: randomShift)
+                _ = caesar.encipher(b)
+            }
+        }
+    }
+    
     func testVigenerePerformanceBigText(){
         let key = "SomeKeyTestCipher)(*&ˆ\\\'9876543ebo974x53twquvyqziuy#!@$Q#IKETSDZDFYJK$Î"
         let b = giantText
-        let vigenere = VigenereCipher(alphabet, key: key)
         self.measure {
             for _ in 0...10{
+                let vigenere = VigenereCipher(alphabet, key: key)
                 _ = vigenere.encipher(b)
             }
         }
     }
     
-    //0.001
-    func testCaesarPerformanceSmallText(){
-        let b = text
-        let shift = randomShift
-        let caesar = CaesarCipher(shift: shift)
-        
-        self.measure {
-            for _ in 0...10{
-                _ = caesar.encipher(b)
-            }
-        }
-    }
-    
-    //0.007
     func testVigenerePerformanceSmallText(){
         let b = text
-        let vigenere = VigenereCipher(alphabet, key: key)
         self.measure {
             for _ in 0...10{
+                let vigenere = VigenereCipher(alphabet, key: key)
                 _ = vigenere.encipher(b)
             }
         }

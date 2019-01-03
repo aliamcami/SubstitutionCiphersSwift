@@ -13,9 +13,9 @@ public class VigenereCipher {
     private let key: [Character]
     private let alphabetEnum: SCAlphabet
     private let alphabet: [Character]
-    private typealias cacheType = Dictionary<Character, Dictionary<Character, Character>>
-    private var cacheEnchiper = cacheType()
-    private var cacheDechiper = cacheType()
+    private typealias CacheType = Dictionary<Character, Dictionary<Character, Character>>
+    private lazy var cacheEnchiper: CacheType = makeCache(encipher: true)
+    private lazy var cacheDechiper: CacheType = makeCache(encipher: false)
     
     //MARK:- Public functions
     
@@ -36,8 +36,8 @@ public class VigenereCipher {
      */
     public  init(_ alphabet: SCAlphabet = SCAlphabet.uppercased, key: String, mode: CipherMode = .forceUppercase) {
         self.alphabetEnum = alphabet
-        self.alphabet = self.alphabetEnum.array
         self.mode = mode
+        self.alphabet = alphabet.array(fromMode: mode)
         
         switch mode {
         case .forceLowercase:
@@ -47,8 +47,6 @@ public class VigenereCipher {
         default:
             self.key = Array(key)
         }
-        
-        makeCache()
     }
     
     /**
@@ -92,18 +90,19 @@ public class VigenereCipher {
      - OriginalChar: containts a single character from the original alphabet
      - ShiftedChar: contains a single character from the shifted alphabet given the position that the KeyChar is in the original alphabet
      */
-    private func makeCache(){
+    private func makeCache(encipher: Bool) -> CacheType{
+        var tmp = CacheType()
         for char in key.unique(){
             if let shift = alphabet.firstIndex(of: char){
                 let caesar = CaesarCipher(shift: shift, alphabet: self.alphabetEnum, mode: self.mode)
-                cacheEnchiper[char] = caesar.cacheEncipher
-                cacheDechiper[char] = caesar.cacheDecipher
+                tmp[char] = encipher ? caesar.cacheEncipher : caesar.cacheDecipher
             }
         }
+        return tmp
     }
     
     ///Applys the substitution of the text characters given a cache
-    private func apply(_ cache: cacheType, toText text: String) -> [Character]{
+    private func apply(_ cache: CacheType, toText text: String) -> [Character]{
         guard !self.key.isEmpty else{
             return Array(text)
         }
