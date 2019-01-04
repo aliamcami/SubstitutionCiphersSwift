@@ -10,6 +10,8 @@ Pod::Spec.new do |s|
   s.name             = 'SubstitutionCiphers'
   s.version          = '0.1.0'
   s.summary          = 'Highly performatic implementation of Caesar cipher and Vigenere cipher for both small and giant amounts of text.'
+  s.swift_version = '4.2'
+  
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,7 +19,7 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = 'Highly performatic implementation of Caesar cipher and Vigenere cipher for both small and giant amounts of text.'
+#s.description      = 'Highly performatic implementation of Caesar cipher and Vigenere cipher for both small and giant amounts of text '
   
 
   s.homepage         = 'https://github.com/aliamcami/SubstitutionCiphersSwift'
@@ -27,7 +29,7 @@ Pod::Spec.new do |s|
  
 
   s.ios.deployment_target = '8.0'
-
+  
   s.source_files = 'SubstitutionCiphers/Classes/**/*'
   
   # s.resource_bundles = {
