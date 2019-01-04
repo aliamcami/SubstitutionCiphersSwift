@@ -50,6 +50,22 @@ public enum SCAlphabet{
             let lastLetter = Int(UnicodeScalar("z").value)
             return getAllUnicodeFrom(first: firstLetter, last: lastLetter)
         }
-        
+    }
+    
+    func array(fromMode mode: CipherMode) -> [Character]{
+        let arr = self.array
+        let alph = String(arr)
+        switch mode {
+        case .caseInsensitive:
+            let lower = alph.lowercased().unique()
+            let upper = String(lower).uppercased().filter { !lower.contains($0)}
+            return "\(String(lower))\(upper)".unique()
+        case .forceLowercase:
+            return alph.lowercased().unique()
+        case .forceUppercase:
+            return alph.uppercased().unique()
+        default:
+            return arr
+        }
     }
 }
