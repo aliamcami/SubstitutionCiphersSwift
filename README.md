@@ -2,8 +2,10 @@
 [![Version](https://img.shields.io/cocoapods/v/SubstitutionCiphers.svg?style=flat)](https://cocoapods.org/pods/SubstitutionCiphers)
 [![License](https://img.shields.io/cocoapods/l/SubstitutionCiphers.svg?style=flat)](https://cocoapods.org/pods/SubstitutionCiphers)
 [![Platform](https://img.shields.io/cocoapods/p/SubstitutionCiphers.svg?style=flat)](https://cocoapods.org/pods/SubstitutionCiphers)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-Compatible-brightgreen.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 
-Highly performatic implementation of Caesar cipher and Vigenere cipher for both small sets of character and giant amounts of text, the high performance comes with a small tradeoff off memory usage. 
+Highly performatic implementation of Caesar cipher and Vigenere cipher for both small and giant amounts of text. 
 
 ## Usage
 The following examples for caesar and vigenere ciphers are placed at the playground inside the project. 
@@ -49,13 +51,34 @@ To encipher/decipher using a different key you will need a new instance of the v
 <!--To run the example project, clone the repo, and run `pod install` from the Example directory first.-->
 
 ## Installation
-
+### Cocoapods
 SubstitutionCiphers is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'SubstitutionCiphers'
 ```
+### Carthage
+To integrate SwifterSwift into your Xcode project using Carthage, specify it in your Cartfile:
+```
+github "aliamcami/SubstitutionCiphersSwift" ~> 0.1.0
+```
+### Swift Package Manager
+You can use The Swift Package Manager to install SwifterSwift by adding the proper description to your Package.swift file:
+```
+import PackageDescription
+
+let package = Package(
+    name: "YOUR_PROJECT_NAME",
+    targets: [],
+    dependencies: [
+    .Package(url: "https://github.com/aliamcami/SubstitutionCiphersSwift", majorVersion: 0.1.0),
+    ]
+)
+```
+
+### Manual
+Copy "SubstitutionCiphers/Class" folder to your project and use it. 
 
 # Customization
 The default instantiation of the CaesarCipher requires only the shift number, and for the VigenereCipher it will require only the key, but you can customize how the cipher algorithm behave when dealing with the text and the alphabet to be used to encipher your text. 
