@@ -1,0 +1,11 @@
+framework module SubstitutionCiphers {
+  umbrella header "SubstitutionCiphers-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module SubstitutionCiphers.Swift {
+    header "SubstitutionCiphers-Swift.h"
+    requires objc
+}

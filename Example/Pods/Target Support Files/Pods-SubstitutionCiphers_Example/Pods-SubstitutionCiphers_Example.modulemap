@@ -1,0 +1,6 @@
+framework module Pods_SubstitutionCiphers_Example {
+  umbrella header "Pods-SubstitutionCiphers_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

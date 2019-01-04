@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SubstitutionCiphers_Example' do
+  pod 'SubstitutionCiphers', :path => '../'
+
+  target 'SubstitutionCiphers_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

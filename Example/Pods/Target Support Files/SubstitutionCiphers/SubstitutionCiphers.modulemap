@@ -1,0 +1,6 @@
+framework module SubstitutionCiphers {
+  umbrella header "SubstitutionCiphers-umbrella.h"
+
+  export *
+  module * { export * }
+}
